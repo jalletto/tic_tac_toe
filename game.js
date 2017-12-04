@@ -55,18 +55,6 @@ TicTacToe.prototype.diagonalWin = function(player){
 
 var game = new TicTacToe();
 
-game.printBoard();
-
-
-
-game.updateBoard(0, game.player2);
-game.verticalWin(game.player2)
-game.updateBoard(3, game.player2);
-game.verticalWin(game.player2)
-game.updateBoard(6, game.player2);
-game.verticalWin(game.player2)
-
-game.printBoard();
 
 
 

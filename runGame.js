@@ -5,3 +5,9 @@
   // get input (player / tile)
   // update board
 // check board
+
+let table = document.querySelector('table')
+
+table.addEventListener("click", function(e){
+  e.target.innerHTML = "X"
+})
