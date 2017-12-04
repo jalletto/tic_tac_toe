@@ -16,9 +16,10 @@ TicTacToe.prototype.printBoard = function(){
   console.log(this.board)
 };
 
-TicTacToe.prototype.updateBoard = function(position){
-  if(this.board[position] === " " ){
-   this.board[position] = this.activePlayer
+TicTacToe.prototype.updateBoard = function(e){
+  if(this.board[e.target.id] === " " ){
+   this.board[e.target.id] = this.activePlayer
+   this.updateHTML(e)
   }
 };
 
@@ -83,7 +84,10 @@ TicTacToe.prototype.tie = function(){
     }
 }
 
+TicTacToe.prototype.updateHTML = function(e){
+    e.target.innerHTML = game.activePlayer
 
+}
 
 
 
