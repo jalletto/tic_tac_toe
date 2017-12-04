@@ -71,6 +71,17 @@ TicTacToe.prototype.gameWon = function(){
   return this.gameOver
 }
 
+TicTacToe.prototype.blanks = function(){
+  return this.board.includes(" ")
+}
+
+TicTacToe.prototype.tie = function(){
+  if(!this.blanks() && !this.gameWon()){
+      return true
+    } else {
+      return false
+    }
+}
 
 
 
