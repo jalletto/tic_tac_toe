@@ -66,8 +66,9 @@ TicTacToe.prototype.switchActivePlayer = function(){
 
 TicTacToe.prototype.gameWon = function(){
   if(this.diagonalWin() || this.horizontalWin() || this.verticalWin()){
-    return true
+    this.gameOver = true
   }
+  return this.gameOver
 }
 
 
