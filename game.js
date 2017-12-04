@@ -1,16 +1,16 @@
 // What is the game state?
 // when you create a constructor function, a prototype object gets made: Game.prototype = {}; now exists
 var TicTacToe = function(){
-  this.player1 = 'X';
-  this.player2 = 'O';
-  this.gameOver = false;
+  this.player1 = 'X'
+  this.player2 = 'O'
+  this.gameOver = false
   this.activePlayer = this.player1
   this.board = [
   " ", " ", " ",
   " ", " ", " ",
   " ", " ", " "
   ]
-};
+}
 
 TicTacToe.prototype.printBoard = function(){
   console.log(this.board)
@@ -21,7 +21,12 @@ TicTacToe.prototype.updateBoard = function(e){
    this.board[e.target.id] = this.activePlayer
    this.updateHTML(e)
   }
-};
+}
+
+TicTacToe.prototype.updateHTML = function(e){
+    e.target.innerHTML = game.activePlayer
+
+}
 
 TicTacToe.prototype.verticalWin = function(){
   if(this.board[0] === this.activePlayer && this.board[3] === this.activePlayer && this.board[6] === this.activePlayer ){
@@ -84,11 +89,25 @@ TicTacToe.prototype.tie = function(){
     }
 }
 
-TicTacToe.prototype.updateHTML = function(e){
-    e.target.innerHTML = game.activePlayer
-
+TicTacToe.prototype.endGame = function(){
+  if(game.gameWon() && !game.tie()){
+    alert(game.activePlayer + " Wins the Game!")
+  }else if (!game.gameWon() && game.tie()){
+    alert("Tie Game Fools!")
+  }
 }
 
+TicTacToe.prototype.run = function(){
+  let table = document.querySelector('table')
+  let game = this
+  table.addEventListener("click", function(e){
+    game.printBoard()
+    game.updateBoard(e)
+    game.printBoard()
+    game.endGame()
+    game.switchActivePlayer()
+})
+}
 
 
 
