@@ -1,8 +1,10 @@
 // What is the game state?
 // when you create a constructor function, a prototype object gets made: Game.prototype = {}; now exists
 var TicTacToe = function(){
-  this.player1 = 'X'
-  this.player2 = 'O'
+  this.player1 = 'X';
+  this.player2 = 'O';
+  this.gameOver = false;
+  this.activePlayer = this.player1
   this.board = [
   " ", " ", " ",
   " ", " ", " ",
@@ -14,59 +16,63 @@ TicTacToe.prototype.printBoard = function(){
   console.log(this.board)
 };
 
-TicTacToe.prototype.updateBoard = function(position, player){
-  this.board[position] = player
-
+TicTacToe.prototype.updateBoard = function(position){
+  if(this.board[position] === " " ){
+   this.board[position] = this.activePlayer
+  }
 };
 
-TicTacToe.prototype.verticalWin = function(player){
-  if(this.board[0] === player && this.board[3] === player && this.board[6] === player ){
-    console.log(player + " Wins!")
+TicTacToe.prototype.verticalWin = function(){
+  if(this.board[0] === this.activePlayer && this.board[3] === this.activePlayer && this.board[6] === this.activePlayer ){
+    return true
 
-  } else if(this.board[1] === player && this.board[4] === player && this.board[7] === player ){
-     console.log(player + " Wins!")
+  } else if(this.board[1] === this.activePlayer && this.board[4] === this.activePlayer && this.board[7] === this.activePlayer ){
+     return true
 
-  }else if(this.board[2] === player && this.board[5] === player && this.board[8] === player ){
-     console.log(player + " Wins!")
+  }else if(this.board[2] === this.activePlayer && this.board[5] === this.activePlayer && this.board[8] === this.activePlayer ){
+     return true
   }
+    return false
 }
 
-TicTacToe.prototype.horizontalWin = function(player){
-  if(this.board[0] === player && this.board[1] === player && this.board[2] === player ){
-    console.log(player + " Wins!")
+TicTacToe.prototype.horizontalWin = function(){
+  if(this.board[0] === this.activePlayer && this.board[1] === this.activePlayer && this.board[2] === this.activePlayer ){
+      return true
 
-  } else if(this.board[3] === player && this.board[4] === player && this.board[5] === player ){
-     console.log(player + " Wins!")
+  } else if(this.board[3] === this.activePlayer && this.board[4] === this.activePlayer && this.board[5] === this.activePlayer ){
+      return true
 
-  }else if(this.board[6] === player && this.board[7] === player && this.board[8] === player ){
-     console.log(player + " Wins!")
+  }else if(this.board[6] === this.activePlayer && this.board[7] === this.activePlayer && this.board[8] === this.activePlayer ){
+      return true
   }
+    return false
 }
 
-TicTacToe.prototype.diagonalWin = function(player){
-  if(this.board[0] === player && this.board[4] === player && this.board[8] === player ){
-    console.log(player + " Wins!")
+TicTacToe.prototype.diagonalWin = function(){
+  if(this.board[0] === this.activePlayer && this.board[4] === this.activePlayer && this.board[8] === this.activePlayer ){
+      return true
 
-  } else if(this.board[6] === player && this.board[4] === player && this.board[2] === player ){
-     console.log(player + " Wins!")
+  } else if(this.board[6] === this.activePlayer && this.board[4] === this.activePlayer && this.board[2] === this.activePlayer ){
+      return true
     }
+    return false
 }
 
 
-var game = new TicTacToe();
+TicTacToe.prototype.switchActivePlayer = function(){
+  this.activePlayer === this.player1 ? this.activePlayer = this.player2 : this.activePlayer = this.player1
 
-game.printBoard();
+}
+
+TicTacToe.prototype.gameWon = function(){
+  if(this.diagonalWin() || this.horizontalWin() || this.verticalWin()){
+    this.gameOver = true
+  }
+  return this.gameOver
+}
 
 
 
-game.updateBoard(0, game.player2);
-game.verticalWin(game.player2)
-game.updateBoard(3, game.player2);
-game.verticalWin(game.player2)
-game.updateBoard(6, game.player2);
-game.verticalWin(game.player2)
-
-game.printBoard();
 
 
 

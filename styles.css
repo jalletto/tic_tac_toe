@@ -1,0 +1,48 @@
+table {
+  margin: auto;
+  border: solid;
+}
+
+td {
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  border: solid;
+  font-size: 30px
+}
+
+.cell-0 {
+  border-top: none;
+  border-left: none;
+}
+
+.cell-1{
+  border-top: none;
+}
+
+.cell-2{
+  border-top: none;
+  border-right: none;
+}
+
+.cell-3{
+  border-left: none;
+}
+
+.cell-5{
+  border-right: none;
+}
+
+.cell-6{
+  border-bottom: none;
+  border-left: none;
+}
+
+.cell-7{
+ border-bottom: none;
+}
+
+.cell-8{
+  border-bottom: none;
+  border-right: none;
+}
