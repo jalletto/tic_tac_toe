@@ -1,10 +1,4 @@
 // What is the game state?
-// Display the board.
-// Game over?
-// Winner?
-// Three in a row?
-// x positions
-// y positions
 // when you create a constructor function, a prototype object gets made: Game.prototype = {}; now exists
 var TicTacToe = function(){
   this.player1 = 'X'
@@ -58,9 +52,12 @@ TicTacToe.prototype.diagonalWin = function(player){
     }
 }
 
+
 var game = new TicTacToe();
 
 game.printBoard();
+
+
 
 game.updateBoard(0, game.player2);
 game.verticalWin(game.player2)
