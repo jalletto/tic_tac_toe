@@ -17,8 +17,9 @@ TicTacToe.prototype.printBoard = function(){
 };
 
 TicTacToe.prototype.updateBoard = function(position){
-  this.board[position] = this.activePlayer
-
+  if(this.board[position] === " " ){
+   this.board[position] = this.activePlayer
+  }
 };
 
 TicTacToe.prototype.verticalWin = function(){
@@ -68,6 +69,8 @@ TicTacToe.prototype.gameWon = function(){
     return true
   }
 }
+
+
 
 
 

@@ -1,10 +1,4 @@
-// check board.
-  // check if game won?
-    //   yes = report winner / end game
-    //   no = await input.
-  // get input (player / tile)
-  // update board
-// check board
+
 let game = new TicTacToe();
 
 let table = document.querySelector('table')
@@ -22,3 +16,9 @@ table.addEventListener("click", function(e){
   }
   game.switchActivePlayer()
 })
+
+
+// Write logic for tie game.
+// html letter still changes if double clicked.
+// use game.board to update html?
+//
