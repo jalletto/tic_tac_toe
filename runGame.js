@@ -17,6 +17,8 @@ table.addEventListener("click", function(e){
   game.updateBoard(e.target.id)
   game.printBoard()
 
-
+  if(game.gameWon()){
+    alert(game.activePlayer + " Wins the Game!")
+  }
   game.switchActivePlayer()
 })

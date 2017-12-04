@@ -58,10 +58,15 @@ TicTacToe.prototype.diagonalWin = function(){
 }
 
 
-
 TicTacToe.prototype.switchActivePlayer = function(){
   this.activePlayer === this.player1 ? this.activePlayer = this.player2 : this.activePlayer = this.player1
 
+}
+
+TicTacToe.prototype.gameWon = function(){
+  if(this.diagonalWin() || this.horizontalWin() || this.verticalWin()){
+    return true
+  }
 }
 
 
