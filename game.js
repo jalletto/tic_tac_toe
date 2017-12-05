@@ -29,9 +29,15 @@ TicTacToe.prototype.printBoard = function(){
 TicTacToe.prototype.updateBoard = function(e){
   if(this.board[e.target.id] === " " ){
    this.board[e.target.id] = this.activePlayer
-   this.updateHTML(e)
+   this.updateHTMLBoard(e)
   }
+
 }
+
+TicTacToe.prototype.updateHTMLBoard = function(e){
+    e.target.innerHTML = game.activePlayer
+}
+
 
 TicTacToe.prototype.updateHTML = function(e){
     e.target.innerHTML = game.activePlayer
@@ -81,11 +87,18 @@ TicTacToe.prototype.win = function(){
       }
     }
     return false
-  }
+
+}
+
+TicTacToe.prototype.updateHTMLCurrentPlayer = function(){
+  let current_player = document.querySelector('#current_player')
+  current_player.innerText = game.activePlayer + "'s Turn"
+}
+
 
 TicTacToe.prototype.switchActivePlayer = function(){
   this.activePlayer === this.player1 ? this.activePlayer = this.player2 : this.activePlayer = this.player1
-
+    this.updateHTMLCurrentPlayer()
 }
 
 TicTacToe.prototype.gameWon = function(){
@@ -124,8 +137,6 @@ TicTacToe.prototype.run = function(){
     game.updateBoard(e)
     game.printBoard()
     game.endGame()
-    console.log(game.win())
-    console.log(game.winCombos[0][2])
     game.switchActivePlayer()
 })
 }
