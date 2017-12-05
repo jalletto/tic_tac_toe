@@ -19,55 +19,58 @@ TicTacToe.prototype.printBoard = function(){
 TicTacToe.prototype.updateBoard = function(e){
   if(this.board[e.target.id] === " " ){
    this.board[e.target.id] = this.activePlayer
-   this.updateHTML(e)
+   this.updateHTMLBoard(e)
   }
 }
 
-TicTacToe.prototype.updateHTML = function(e){
+TicTacToe.prototype.updateHTMLBoard = function(e){
     e.target.innerHTML = game.activePlayer
-
 }
 
-TicTacToe.prototype.verticalWin = function(){
-  if(this.board[0] === this.activePlayer && this.board[3] === this.activePlayer && this.board[6] === this.activePlayer ){
-    return true
+// TicTacToe.prototype.verticalWin = function(){
+//   if(this.board[0] === this.activePlayer && this.board[3] === this.activePlayer && this.board[6] === this.activePlayer ){
+//     return true
 
-  } else if(this.board[1] === this.activePlayer && this.board[4] === this.activePlayer && this.board[7] === this.activePlayer ){
-     return true
+//   } else if(this.board[1] === this.activePlayer && this.board[4] === this.activePlayer && this.board[7] === this.activePlayer ){
+//      return true
 
-  }else if(this.board[2] === this.activePlayer && this.board[5] === this.activePlayer && this.board[8] === this.activePlayer ){
-     return true
-  }
-    return false
+//   }else if(this.board[2] === this.activePlayer && this.board[5] === this.activePlayer && this.board[8] === this.activePlayer ){
+//      return true
+//   }
+//     return false
+// }
+
+// TicTacToe.prototype.horizontalWin = function(){
+//   if(this.board[0] === this.activePlayer && this.board[1] === this.activePlayer && this.board[2] === this.activePlayer ){
+//       return true
+
+//   } else if(this.board[3] === this.activePlayer && this.board[4] === this.activePlayer && this.board[5] === this.activePlayer ){
+//       return true
+
+//   }else if(this.board[6] === this.activePlayer && this.board[7] === this.activePlayer && this.board[8] === this.activePlayer ){
+//       return true
+//   }
+//     return false
+// }
+
+// TicTacToe.prototype.diagonalWin = function(){
+//   if(this.board[0] === this.activePlayer && this.board[4] === this.activePlayer && this.board[8] === this.activePlayer ){
+//       return true
+
+//   } else if(this.board[6] === this.activePlayer && this.board[4] === this.activePlayer && this.board[2] === this.activePlayer ){
+//       return true
+//     }
+//     return false
+// }
+
+TicTacToe.prototype.updateHTMLCurrentPlayer = function(){
+  let current_player = document.querySelector('#current_player')
+  current_player.innerText = game.activePlayer + "'s Turn"
 }
-
-TicTacToe.prototype.horizontalWin = function(){
-  if(this.board[0] === this.activePlayer && this.board[1] === this.activePlayer && this.board[2] === this.activePlayer ){
-      return true
-
-  } else if(this.board[3] === this.activePlayer && this.board[4] === this.activePlayer && this.board[5] === this.activePlayer ){
-      return true
-
-  }else if(this.board[6] === this.activePlayer && this.board[7] === this.activePlayer && this.board[8] === this.activePlayer ){
-      return true
-  }
-    return false
-}
-
-TicTacToe.prototype.diagonalWin = function(){
-  if(this.board[0] === this.activePlayer && this.board[4] === this.activePlayer && this.board[8] === this.activePlayer ){
-      return true
-
-  } else if(this.board[6] === this.activePlayer && this.board[4] === this.activePlayer && this.board[2] === this.activePlayer ){
-      return true
-    }
-    return false
-}
-
 
 TicTacToe.prototype.switchActivePlayer = function(){
   this.activePlayer === this.player1 ? this.activePlayer = this.player2 : this.activePlayer = this.player1
-
+    this.updateHTMLCurrentPlayer()
 }
 
 TicTacToe.prototype.gameWon = function(){
