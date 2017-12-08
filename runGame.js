@@ -12,13 +12,8 @@ game.run()
           board
 
   updateBoard()
-  updateHTMLBoard()
-  updateHTMLCurrentPlayer
   switchActivePlayer
   blanks
   tie?
-
   endGame
-
-  loops through the board and determines if a winning combo exists.
 */

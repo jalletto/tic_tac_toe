@@ -68,7 +68,7 @@ TicTacToe.prototype.endGame = function(){
   if(this.doesWinningComboExist()){
     this.gameHeader.innerText = this.activePlayer + " Wins the Game!"
   }else if (this.tie()){
-    this.gameHeader.innerText = "Tie Game. You both lose."
+    this.gameHeader.innerText = "You both lose."
   }
 }
 
