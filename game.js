@@ -57,21 +57,15 @@ TicTacToe.prototype.blanks = function(){
 TicTacToe.prototype.doesWinningComboExist = function(){
     for(let i = 0; i < this.winCombos.length; i++ ){
       if(this.board[this.winCombos[i][0]] === this.activePlayer && this.board[this.winCombos[i][1]] === this.activePlayer && this.board[this.winCombos[i][2]] === this.activePlayer){
-        return true
+        this.gameOver = true
       }
     }
-    return false
+    return this.gameOver
 }
 
-TicTacToe.prototype.gameWon = function(){
-  if(this.doesWinningComboExist()){
-    this.gameOver = true
-  }
-  return this.gameOver
-}
 
 TicTacToe.prototype.tie = function(){
-  if(!this.blanks() && !this.gameWon()){
+  if(!this.blanks() && !this.doesWinningComboExist()){
       return true
     } else {
       return false
@@ -79,9 +73,9 @@ TicTacToe.prototype.tie = function(){
 }
 
 TicTacToe.prototype.endGame = function(){
-  if(this.gameWon() && !this.tie()){
+  if(this.doesWinningComboExist() && !this.tie()){
     alert(this.activePlayer + " Wins the Game!")
-  }else if (!this.gameWon() && this.tie()){
+  }else if (!this.doesWinningComboExist() && this.tie()){
     alert("Tie Game Fools!")
   }
 }
