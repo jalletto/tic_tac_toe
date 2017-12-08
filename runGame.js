@@ -19,8 +19,6 @@ game.run()
   tie?
 
   endGame
-  gameWon
-  changes this .gameOver but that can be done in win.
-  win = doesWinningComboExist
+
   loops through the board and determines if a winning combo exists.
 */

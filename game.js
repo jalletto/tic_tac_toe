@@ -15,6 +15,8 @@ let TicTacToe = function(){
   [0,4,8],
   [6,4,2]
 ]
+
+  this.gameHeader = document.querySelector('#game_header')
   this.table = document.querySelector('table')
   this.board = [
   " ", " ", " ",
@@ -27,27 +29,15 @@ let TicTacToe = function(){
 TicTacToe.prototype.updateBoard = function(e){
   if(this.board[e.target.id] === " " ){
    this.board[e.target.id] = this.activePlayer
-   this.updateHTMLBoard(e)
+   e.target.innerHTML = game.activePlayer
   }
-
-}
-
-TicTacToe.prototype.updateHTMLBoard = function(e){
-    e.target.innerHTML = game.activePlayer
-}
-
-
-
-TicTacToe.prototype.updateHTMLCurrentPlayer = function(){
-  let current_player = document.querySelector('#current_player')
-  current_player.innerText = game.activePlayer + "'s Turn"
 }
 
 
 TicTacToe.prototype.switchActivePlayer = function(){
   if(!this.gameOver){
     this.activePlayer === this.player1 ? this.activePlayer = this.player2 : this.activePlayer = this.player1
-      this.updateHTMLCurrentPlayer()
+      this.gameHeader.innerText = game.activePlayer + "'s Turn"
   }
 }
 
@@ -69,18 +59,16 @@ TicTacToe.prototype.doesWinningComboExist = function(){
 
 TicTacToe.prototype.tie = function(){
   if(!this.blanks() && !this.doesWinningComboExist()){
-      return true
-    } else {
-      return false
+      this.gameOver = true
     }
+    return this.gameOver
 }
 
 TicTacToe.prototype.endGame = function(){
-  if(this.doesWinningComboExist() && !this.tie()){
-    console.log('endgame')
-    document.querySelector("#current_player").innerText = this.activePlayer + " Wins the Game!"
-  }else if (!this.doesWinningComboExist() && this.tie()){
-    alert("Tie Game Fools!")
+  if(this.doesWinningComboExist()){
+    this.gameHeader.innerText = this.activePlayer + " Wins the Game!"
+  }else if (this.tie()){
+    this.gameHeader.innerText = "Tie Game. You both lose."
   }
 }
 
