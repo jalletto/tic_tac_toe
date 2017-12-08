@@ -36,14 +36,6 @@ TicTacToe.prototype.updateHTMLBoard = function(e){
 }
 
 
-TicTacToe.prototype.win = function(){
-    for(let i = 0; i < this.winCombos.length; i++ ){
-      if(this.board[this.winCombos[i][0]] === this.activePlayer && this.board[this.winCombos[i][1]] === this.activePlayer && this.board[this.winCombos[i][2]] === this.activePlayer){
-        return true
-      }
-    }
-    return false
-}
 
 TicTacToe.prototype.updateHTMLCurrentPlayer = function(){
   let current_player = document.querySelector('#current_player')
@@ -56,15 +48,26 @@ TicTacToe.prototype.switchActivePlayer = function(){
     this.updateHTMLCurrentPlayer()
 }
 
-TicTacToe.prototype.gameWon = function(){
-  if(this.win()){
-    this.gameOver = true
-  }
-  return this.gameOver
-}
 
 TicTacToe.prototype.blanks = function(){
   return this.board.includes(" ")
+}
+
+
+TicTacToe.prototype.doesWinningComboExist = function(){
+    for(let i = 0; i < this.winCombos.length; i++ ){
+      if(this.board[this.winCombos[i][0]] === this.activePlayer && this.board[this.winCombos[i][1]] === this.activePlayer && this.board[this.winCombos[i][2]] === this.activePlayer){
+        return true
+      }
+    }
+    return false
+}
+
+TicTacToe.prototype.gameWon = function(){
+  if(this.doesWinningComboExist()){
+    this.gameOver = true
+  }
+  return this.gameOver
 }
 
 TicTacToe.prototype.tie = function(){
