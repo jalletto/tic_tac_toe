@@ -15,6 +15,7 @@ let TicTacToe = function(){
   [0,4,8],
   [6,4,2]
 ]
+  this.table = document.querySelector('table')
   this.board = [
   " ", " ", " ",
   " ", " ", " ",
@@ -44,8 +45,10 @@ TicTacToe.prototype.updateHTMLCurrentPlayer = function(){
 
 
 TicTacToe.prototype.switchActivePlayer = function(){
-  this.activePlayer === this.player1 ? this.activePlayer = this.player2 : this.activePlayer = this.player1
-    this.updateHTMLCurrentPlayer()
+  if(!this.gameOver){
+    this.activePlayer === this.player1 ? this.activePlayer = this.player2 : this.activePlayer = this.player1
+      this.updateHTMLCurrentPlayer()
+  }
 }
 
 
@@ -74,16 +77,16 @@ TicTacToe.prototype.tie = function(){
 
 TicTacToe.prototype.endGame = function(){
   if(this.doesWinningComboExist() && !this.tie()){
-    alert(this.activePlayer + " Wins the Game!")
+    console.log('endgame')
+    document.querySelector("#current_player").innerText = this.activePlayer + " Wins the Game!"
   }else if (!this.doesWinningComboExist() && this.tie()){
     alert("Tie Game Fools!")
   }
 }
 
 TicTacToe.prototype.run = function(){
-  let table = document.querySelector('table')
   let game = this
-  table.addEventListener("click", function(e){
+  this.table.addEventListener("click", function(e){
     game.updateBoard(e)
     game.endGame()
     game.switchActivePlayer()
